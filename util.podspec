@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "util"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A short description of util."
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/util.git", :tag => "0.0.1" }
+  s.source       = { :git => "http://192.168.10.2/stash/scm/~robert.balint/util-base.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "Classes", "**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
