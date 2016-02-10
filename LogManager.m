@@ -7,10 +7,13 @@
 //
 
 #import "LogManager.h"
+#if HERO
 #import "CommunicationManager.h"
-#include <sys/types.h>
-#include <sys/sysctl.h>
-#include <mach/mach.h>
+#endif
+#import <sys/sysctl.h>
+#import <mach/mach.h>
+#import "UtilMacros.h"
+#import <UIKit/UIKit.h>
 
 size_t memoryUsage(void) {
     struct task_basic_info info;
@@ -168,6 +171,7 @@ int copyFile(const char *fn1, const char *fn2) {
     return self;
 }
 
+#if HERO
 - (void)uploadLogWithCompletion:(void (^ _Nullable)(void))completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!redirectedFile) {
@@ -238,6 +242,7 @@ int copyFile(const char *fn1, const char *fn2) {
         
     });
 }
+#endif
 
 - (void)resetUploadedState {
     

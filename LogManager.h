@@ -15,7 +15,9 @@ NSString *platform(BOOL stripModel);
 
 @interface LogManager : Manager
 
+#if HERO
 - (void)uploadLogWithCompletion:(void (^ _Nullable)(void))completion;
+#endif
 - (void)resetUploadedState;
 
 @end
