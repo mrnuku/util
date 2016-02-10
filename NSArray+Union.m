@@ -41,4 +41,55 @@
     return unificated.copy;
 }
 
+- (NSArray *)arrayOfUnionObjectsWithArray:(NSArray *)array useObjectsFromSecondaryArray:(BOOL)secondaryArrayObjects {
+    NSMutableArray *unificated = [[NSMutableArray alloc] initWithCapacity:MIN(self.count, array.count)];
+    
+    // use the smaller container for linear search for best performance
+    if (array.count < self.count) {
+        for (id object in self) {
+            
+            NSUInteger idx = [array indexOfObject:object];
+            
+            if (idx != NSNotFound) {
+                [unificated addObject:secondaryArrayObjects ? [array objectAtIndex:idx] : object];
+            }
+        }
+    }
+    else {
+        
+        for (id object in array) {
+            
+            NSUInteger idx = [self indexOfObject:object];
+            
+            if (idx != NSNotFound) {
+                [unificated addObject:secondaryArrayObjects ? object : [self objectAtIndex:idx]];
+            }
+        }
+    }
+    
+    return unificated.copy;
+}
+
+- (NSArray *)arrayOfSubstractedObjectsWithArray:(NSArray *)array {
+    if (array.count > self.count) {
+#ifdef TestLog
+        TestLog(@"%@ %@: using inverse substraction", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
+#endif
+        return [array arrayOfSubstractedObjectsWithArray:self];
+    }
+    
+    NSMutableArray *substracted = [[NSMutableArray alloc] initWithCapacity:self.count];
+    
+    for (id object in self) {
+        
+        NSUInteger idx = [array indexOfObject:object];
+        
+        if (idx == NSNotFound) {
+            [substracted addObject:object];
+        }
+    }
+    
+    return substracted.copy;
+}
+
 @end
