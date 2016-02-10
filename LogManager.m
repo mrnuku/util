@@ -8,8 +8,9 @@
 
 #import "LogManager.h"
 #import "CommunicationManager.h"
-#import <sys/sysctl.h>
-#import <mach/mach.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <mach/mach.h>
 
 size_t memoryUsage(void) {
     struct task_basic_info info;
@@ -29,6 +30,45 @@ double memoryUsageMegabytes() {
     size_t bytes = memoryUsage();
     static double denom = 1024 * 1024;
     return (double)bytes / denom;
+}
+
+NSString *platform(BOOL stripModel) {
+    char temp[256] = { 0 };
+    size_t size;
+    char *machine;
+    
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    
+    if (size >= sizeof(temp)) {
+        machine = alloca(size);
+    }
+    else {
+        machine = temp;
+    }
+    
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    
+    for (size_t i = 0; i < size; i++) {
+        if (machine[i] == ',') {
+            machine[i] = '.';
+        }
+    }
+    
+    char* output = machine;
+    
+    if (stripModel) {
+        for (; output[0]; output++) {
+            if (isdigit(*output)) {
+                break;
+            }
+        }
+    }
+    
+    NSString *platform = [NSString stringWithCString:output encoding:NSUTF8StringEncoding];
+    
+    //if (size >= sizeof(temp)) free(machine);
+    
+    return platform;
 }
 
 // Returns true if the current process is being debugged (either

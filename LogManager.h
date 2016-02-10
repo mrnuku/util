@@ -11,6 +11,7 @@
 size_t memoryUsage(void);
 double memoryUsageMegabytes();
 BOOL isDebuggerAttached(void);
+NSString *platform(BOOL stripModel);
 
 @interface LogManager : Manager
 
