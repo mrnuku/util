@@ -12,6 +12,7 @@
 
 /// creates a singleton manager instance
 + (instancetype)manager;
++ (instancetype)sharedInstance;
 
 + (void)clearManager;
 
