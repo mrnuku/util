@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "util"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "A short description of util."
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://192.168.10.2/stash/scm/~robert.balint/util-base.git", :tag => "0.0.3" }
+  s.source       = { :git => "http://192.168.10.2/stash/scm/~robert.balint/util-base.git", :tag => "0.0.4" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
