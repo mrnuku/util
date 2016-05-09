@@ -11,7 +11,10 @@
 
 @implementation NSDictionary (TableViewIndexPath)
 
-- (NSInteger)numberOfUniqueSections {
+/** collects a set of indicies where all sections are unique and rows are undefined
+ * @return NSMutableArray with the result
+ */
+- (NSMutableArray<NSIndexPath *> *)_getUniqueSectionIndicies {
     __block NSMutableArray<NSIndexPath *> *temp = [NSMutableArray new];
     
     [self enumerateKeysAndObjectsUsingBlock:^(NSIndexPath *key1, id obj1, BOOL *stop1) {
@@ -24,17 +27,38 @@
         }
     }];
     
-    return temp.count;
+    return temp;
+}
+
+- (NSInteger)numberOfUniqueSections {
+    return [self _getUniqueSectionIndicies].count;
+}
+
+- (NSInteger)maximumIndexOfSections {
+    NSArray<NSIndexPath *> *uniqueSectionIndicies = [self _getUniqueSectionIndicies];
+    NSInteger maximum = 0;
+    
+    for (NSIndexPath *path in uniqueSectionIndicies) {
+        maximum = MAX(maximum, path.section);
+    }
+    
+    return maximum;
 }
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section {
     __block NSInteger count = 0;
+    __block NSInteger maximum = 0;
     
     [self enumerateKeysAndObjectsUsingBlock:^(NSIndexPath *key, id obj, BOOL *stop) {
         if (key.section == section) {
+            maximum = MAX(maximum, key.row);
             count++;
         }
     }];
+    
+    if (count) {
+        NSAssert((maximum + 1) == count, @"Found non-continous index set");
+    }
     
     return count;
 }
@@ -48,6 +72,31 @@
     
     for (NSInteger i = 0; i < array.count; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:numSections];
+        id obj = [array objectAtIndex:i];
+        
+        [self setObject:obj forKey:indexPath];
+    }
+}
+
+- (void)removeSection:(NSInteger)section {
+    __block NSMutableArray<NSIndexPath *> *temp = [NSMutableArray new];
+    
+    [self enumerateKeysAndObjectsUsingBlock:^(NSIndexPath *key, id obj, BOOL *stop) {
+        if (key.section == section) {
+            [temp addObject:key];
+        }
+    }];
+    
+    for (NSIndexPath *path in temp) {
+        [self removeObjectForKey:path];
+    }
+}
+
+- (void)replaceSection:(NSInteger)section withArray:(NSArray *)array {
+    [self removeSection:section];
+    
+    for (NSInteger i = 0; i < array.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:section];
         id obj = [array objectAtIndex:i];
         
         [self setObject:obj forKey:indexPath];

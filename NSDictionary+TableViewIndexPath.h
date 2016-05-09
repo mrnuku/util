@@ -10,10 +10,15 @@
 
 @interface NSDictionary (TableViewIndexPath)
 
-/** compute the maximum number of sections
+/** compute the count of all unique sections
  * @return NSInteger with the result
  */
 - (NSInteger)numberOfUniqueSections;
+
+/** iterates through all indicies and gets the highest index of all sections
+ * @return NSInteger with the result
+ */
+- (NSInteger)maximumIndexOfSections;
 
 /** compute the maximum number of rows in the given section
  * @param section the section index
@@ -29,6 +34,17 @@
  * @param array the source for the new section data
  */
 - (void)addArrayAsNewSection:(NSArray *)array;
+
+/** removes any object connected to this section from dictionary
+ * @param section the index of the section to remove
+ */
+- (void)removeSection:(NSInteger)section;
+
+/** removes any object then replaces all objects with given array in section
+ * @param section the index of the section to replace
+ * @param array the source for the section data
+ */
+- (void)replaceSection:(NSInteger)section withArray:(NSArray *)array;
 
 /** remove an indexPath from the data and handle the preceding indicies to be updated
  * @param indexPath the index path to be removed
