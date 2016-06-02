@@ -17,17 +17,16 @@ Pod::Spec.new do |s|
 
   s.name         = "util"
   s.version      = "0.0.5"
-  s.summary      = "A short description of util."
+  s.summary      = "Objective-C various utils for dummies."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = <<-DESC
-                   DESC
+  s.description  = "Objective-C various utils for dummies."
 
-  s.homepage     = "http://EXAMPLE/util"
+  s.homepage     = "http://dev.server/stash/users/robert.balint/repos/util-base/"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -38,7 +37,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
+  s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -79,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://192.168.10.2/stash/scm/~robert.balint/util-base.git", :tag => "0.0.5" }
+  s.source       = { :git => "http://dev.server/stash/scm/~robert.balint/util-base.git", :tag => "0.0.5" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

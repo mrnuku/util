@@ -107,7 +107,10 @@ BOOL isDebuggerAttached(void) {
 FILE *redirectConsole(NSString *name) {
     if (!isDebuggerAttached()) {
         NSString *logPath = [NSTemporaryDirectory() stringByAppendingPathComponent:name];
-        return freopen([logPath fileSystemRepresentation], "a+", stderr);
+        FILE *redirectedFile = freopen([logPath fileSystemRepresentation], "a+", stderr);
+        dup2(fileno(stderr), fileno(stdout));
+        setvbuf(redirectedFile, NULL, _IOLBF, 1024);
+        return redirectedFile;
     }
     return NULL;
 }
@@ -148,7 +151,9 @@ int copyFile(const char *fn1, const char *fn2) {
     return all > 0;
 }
 
-@implementation LogManager
+@implementation LogManager {
+    NSTimer *flushTimer;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -159,11 +164,26 @@ int copyFile(const char *fn1, const char *fn2) {
         self.redirectedFile = redirectConsole(self.redirectedFileName);
         TestLog(@"=== LogManager initialized ===");
         TestLog(@"NSDocumentDirectory: %@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject);
-        TestLog(@"Current memory usage: %.2f", memoryUsageMegabytes());
+        TestLog(@"%@", self.description);
+        flushTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doFlush) userInfo:nil repeats:YES];
         //#endif
     }
     
     return self;
+}
+
+- (void)doFlush {
+    fflush(stdout);
+    fflush(stderr);
+    fflush(self.redirectedFile);
+}
+
+- (NSString *)description {
+    NSString *logPath = [NSTemporaryDirectory() stringByAppendingPathComponent:self.redirectedFileName];
+    static double denom = 1024 * 1024;
+    double fileSize = (double)[[[NSFileManager defaultManager] attributesOfItemAtPath:logPath error:nil] fileSize] / denom;
+    
+    return [NSString stringWithFormat:@"Log name: %@, Log size: %.2f Mb, Current memory usage: %.2f Mb, Platform: %@, Debugger attached: %@", self.redirectedFileName, fileSize, memoryUsageMegabytes(), platform(NO), @(isDebuggerAttached())];
 }
 
 @end

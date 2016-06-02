@@ -20,4 +20,6 @@ int copyFile(const char *fn1, const char *fn2);
 @property (nonatomic, strong) NSString *redirectedFileName;
 @property (nonatomic) FILE *redirectedFile;
 
+- (void)doFlush;
+
 @end
