@@ -8,12 +8,14 @@
 
 #import "NSString+Localization.h"
 
+NSString *kNSStringLocalizationDefaultValue = @"kNSStringLocalizationDefaultValue";
+
 @implementation NSString (Localization)
 
 - (instancetype)localized {
-    NSString *localizedString = NSLocalizedString(self, null);
+    NSString *localizedString = NSLocalizedStringWithDefaultValue(self, nil, [NSBundle mainBundle], kNSStringLocalizationDefaultValue, nil);
     
-    if (!localizedString.length || [localizedString isEqualToString:self]) {
+    if (localizedString == kNSStringLocalizationDefaultValue) {
 #ifdef DEBUG
         localizedString = [NSString stringWithFormat:@"#%@#", self];
 #else
