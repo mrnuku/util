@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Manager.h"
+#import "NUManager.h"
 
 NSMutableDictionary *managersDict = nil;
 
