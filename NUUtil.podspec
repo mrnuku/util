@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = “NUUtil”
-  s.version      = “0.0.7”
+  s.name         = "NUUtil"
+  s.version      = "0.0.7"
   s.summary      = "Objective-C various utils for dummies."
 
   # This description is used to generate tags and improve search results.
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/mrnuku/util.git", :tag => “0.0.7” }
+  s.source       = { :git => "https://github.com/mrnuku/util.git", :tag => "0.0.7" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
