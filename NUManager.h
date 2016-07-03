@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Manager : NSObject
+@interface NUManager : NSObject
 
 /// creates a singleton manager instance
 + (instancetype)manager;

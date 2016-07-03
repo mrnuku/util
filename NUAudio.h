@@ -21,7 +21,7 @@ enum {
 
 @end
 
-@interface NUAudioManager : Manager
+@interface NUAudioManager : NUManager
 
 - (NUAudioFile *)loadAudioFile:(NSString *)fileName;
 - (void)playAudioFile:(NSString *)fileName;

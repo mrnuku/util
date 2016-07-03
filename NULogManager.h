@@ -15,7 +15,7 @@ BOOL isDebuggerAttached(void);
 NSString *platform(BOOL stripModel);
 int copyFile(const char *fn1, const char *fn2);
 
-@interface LogManager : Manager
+@interface LogManager : NUManager
 
 @property (nonatomic, strong) NSString *redirectedFileName;
 @property (nonatomic) FILE *redirectedFile;

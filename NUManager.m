@@ -11,7 +11,7 @@
 
 NSMutableDictionary *managersDict = nil;
 
-@implementation Manager
+@implementation NUManager
 
 + (instancetype)manager {
     // thread safe but lockless after init
