@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "util"
-  s.version      = "0.0.6"
+  s.name         = “NUUtil”
+  s.version      = “0.0.7”
   s.summary      = "Objective-C various utils for dummies."
 
   # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = "Objective-C various utils for dummies."
 
-  s.homepage     = "http://dev.server/stash/users/robert.balint/repos/util-base/"
+  s.homepage     = "https://github.com/mrnuku/util"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -51,10 +51,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "robert.balint" => "robert.balint@incepteam.com" }
-  # Or just: s.author    = "robert.balint"
-  # s.authors            = { "robert.balint" => "robert.balint@incepteam.com" }
-  # s.social_media_url   = "http://twitter.com/robert.balint"
+  s.author             = { "mrnuku" => "mrnuku@gmail.com" }
+  # Or just: s.author    = "mrnuku"
+  # s.authors            = { "mrnuku" => "mrnuku@gmail.com" }
+  # s.social_media_url   = "http://twitter.com/mrnuku"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://dev.server/stash/scm/~robert.balint/util-base.git", :tag => "0.0.6" }
+  s.source       = { :git => "https://github.com/mrnuku/util.git", :tag => “0.0.7” }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

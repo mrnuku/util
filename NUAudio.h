@@ -6,7 +6,7 @@
 //  Copyright (c) 2015. scientefic_station2. All rights reserved.
 //
 
-#import "Manager.h"
+#import "NUManager.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 enum {

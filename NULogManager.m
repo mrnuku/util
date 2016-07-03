@@ -6,7 +6,7 @@
 //  Copyright © 2015 Incepteam. All rights reserved.
 //
 
-#import "LogManager.h"
+#import "NULogManager.h"
 #import <sys/sysctl.h>
 #import <mach/mach.h>
 #import "UtilMacros.h"
@@ -151,7 +151,7 @@ int copyFile(const char *fn1, const char *fn2) {
     return all > 0;
 }
 
-@implementation LogManager {
+@implementation NULogManager {
     NSTimer *flushTimer;
 }
 

@@ -6,7 +6,7 @@
 //  Copyright © 2015 Incepteam. All rights reserved.
 //
 
-#import "Manager.h"
+#import "NUManager.h"
 #import <stdio.h>
 
 size_t memoryUsage(void);
@@ -15,7 +15,7 @@ BOOL isDebuggerAttached(void);
 NSString *platform(BOOL stripModel);
 int copyFile(const char *fn1, const char *fn2);
 
-@interface LogManager : NUManager
+@interface NULogManager : NUManager
 
 @property (nonatomic, strong) NSString *redirectedFileName;
 @property (nonatomic) FILE *redirectedFile;
