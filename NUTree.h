@@ -1,6 +1,6 @@
 //
-//  NSTree.h
-//  NSTree
+//  NUTree.h
+//  NUTree
 //
 //  Created by . Carlin on 10/16/13.
 //  Copyright (c) 2013 Carlin Creations. All rights reserved.
@@ -9,24 +9,24 @@
 #import <Foundation/Foundation.h>
 
 /*  IMPORTANT NOTES
-    Objects you store in the NSTree must implement a compare: function, see Apple developer docs for an example in NSNumber <https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/classes/nsnumber_class/Reference/Reference.html#//apple_ref/occ/instm/NSNumber/compare:>. I use compare instead of isE
+    Objects you store in the NUTree must implement a compare: function, see Apple developer docs for an example in NSNumber <https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/classes/nsnumber_class/Reference/Reference.html#//apple_ref/occ/instm/NSNumber/compare:>. I use compare instead of isE
 */
 
-#pragma mark - NSTreeNode
+#pragma mark - NUTreeNode
 
-@interface NSTreeNode : NSObject<NSCopying>
+@interface NUTreeNode : NSObject<NSCopying>
 
-    @property (nonatomic, weak) NSTreeNode *parent;
-    @property (nonatomic, weak) NSTreeNode *previous;
-    @property (nonatomic, weak) NSTreeNode *next;
+    @property (nonatomic, weak) NUTreeNode *parent;
+    @property (nonatomic, weak) NUTreeNode *previous;
+    @property (nonatomic, weak) NUTreeNode *next;
     @property (nonatomic, strong) NSMutableArray *data;
     @property (nonatomic, strong) NSMutableArray *children;
 
     /** @brief Initialize with parent node */
-    - (id)initWithParent:(NSTreeNode *)parent;
+    - (id)initWithParent:(NUTreeNode *)parent;
 
     /** @brief Get index of node in children array */
-    - (NSUInteger)indexOfChildNode:(NSTreeNode *)child;
+    - (NSUInteger)indexOfChildNode:(NUTreeNode *)child;
 
     /** @brief Get index of object in data array */
     - (NSUInteger)indexOfDataObject:(id)object;
@@ -40,22 +40,22 @@
 @end
 
 
-#pragma mark - NSTree
+#pragma mark - NUTree
 
 typedef enum {
     /** Traverses data in sorted order */
-    NSTreeTraverseAlgorithmInorder,
+    NUTreeTraverseAlgorithmInorder,
     
     /** Traverses node data first in order, then its branches in order */ 
-    NSTreeTraverseAlgorithmPreorder, 
+    NUTreeTraverseAlgorithmPreorder, 
     
     /** Traverses node branches first in order, then its data */  
-    NSTreeTraverseAlgorithmPostorder, 
+    NUTreeTraverseAlgorithmPostorder, 
     
     /** Traverses tree one level at a time, in order */   
-    NSTreeTraverseAlgorithmBreadthFirst, 
+    NUTreeTraverseAlgorithmBreadthFirst, 
     
-} NSTreeTraverseAlgorithm;
+} NUTreeTraverseAlgorithm;
 
 /** @brief Traversal block for calling a function on data as we traverse through the tree.
     @param node Node on which the data currently resides
@@ -63,9 +63,9 @@ typedef enum {
     @param extra Extra object data passed by user in the call to the traverse: method, this is useful for doing things like aggregate calculations.
     @return BOOL TRUE to continue traversing, FALSE to stop.
 */
-typedef BOOL (^NSTreeTraverseBlock)(NSTreeNode *node, id data, id extra);
+typedef BOOL (^NUTreeTraverseBlock)(NUTreeNode *node, id data, id extra);
 
-@interface NSTree : NSObject<NSFastEnumeration, NSCopying>
+@interface NUTree : NSObject<NSFastEnumeration, NSCopying>
     @property (nonatomic, assign, readonly) NSInteger count;
     @property (nonatomic, assign, readonly) NSInteger nodeCapacity;
     @property (nonatomic, assign, readonly) BOOL cacheOutdated;
@@ -124,8 +124,8 @@ typedef BOOL (^NSTreeTraverseBlock)(NSTreeNode *node, id data, id extra);
         @param algo Traversal algorithm: inorder, postorder, preorder, bfs
         @return BOOL TRUE if traversed through entire tree, FALSE if cut short by traversal block
     */
-    - (BOOL)traverse:(NSTreeTraverseBlock)block
+    - (BOOL)traverse:(NUTreeTraverseBlock)block
            extraData:(id)extra 
-       withAlgorithm:(NSTreeTraverseAlgorithm)algo;
+       withAlgorithm:(NUTreeTraverseAlgorithm)algo;
 
 @end

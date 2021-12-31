@@ -10,7 +10,7 @@
 #import <stdio.h>
 
 size_t memoryUsage(void);
-double memoryUsageMegabytes();
+double memoryUsageMegabytes(void);
 BOOL isDebuggerAttached(void);
 NSString *platform(BOOL stripModel);
 int copyFile(const char *fn1, const char *fn2);

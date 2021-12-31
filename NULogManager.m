@@ -26,7 +26,7 @@ size_t memoryUsage(void) {
     return 0;
 }
 
-double memoryUsageMegabytes() {
+double memoryUsageMegabytes(void) {
     size_t bytes = memoryUsage();
     static double denom = 1024 * 1024;
     return (double)bytes / denom;

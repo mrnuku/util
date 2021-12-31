@@ -12,21 +12,20 @@
 
 /** returns the two container union or intersection of objects
  * @param dictionary the reference container for the receiver array what used for the comparsion
- * @param useObjectsFromDictionary determines which container provides the objects in the resulting array
+ * @param dictionaryObjects determines which container provides the objects in the resulting array
  * @return NSArray with the resulting objects
  */
 - (NSArray *)arrayOfUnionObjectsWithDictionary:(NSDictionary *)dictionary useObjectsFromDictionary:(BOOL)dictionaryObjects;
 
 /** returns the two container union or intersection of objects
  * @param array the reference container for the receiver array what used for the comparsion
- * @param useObjectsFromSecondaryArray determines which container provides the objects in the resulting array
+ * @param secondaryArrayObjects determines which container provides the objects in the resulting array
  * @return NSArray with the resulting objects
  */
 - (NSArray *)arrayOfUnionObjectsWithArray:(NSArray *)array useObjectsFromSecondaryArray:(BOOL)secondaryArrayObjects;
 
 /** returns the two container substraction of objects
- * @param array the reference container for the receiver array what used for the comparsion
- * @param useObjectsFromSecondaryArray determines which container provides the objects in the resulting array
+ * @param array the reference container for the receiver array what used for the comparsionsecondaryArrayObjects
  * @return NSArray with the resulting objects
  */
 - (NSArray *)arrayOfSubstractedObjectsWithArray:(NSArray *)array;
